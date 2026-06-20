@@ -23,7 +23,11 @@ app.disable('x-powered-by');
 // CORS
 app.use(
   cors({
-    origin: 'https://daily-link-tracker.vercel.app' || 'http://localhost:5173',
+    origin: [
+      process.env.CLIENT_URL,
+      'https://daily-link-tracker.vercel.app',
+      'http://localhost:5173'
+    ].filter(Boolean),
     methods: ['GET', 'POST', 'DELETE'],
     allowedHeaders: ['Content-Type'],
   })
